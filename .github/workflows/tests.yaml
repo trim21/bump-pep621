@@ -1,0 +1,44 @@
+name: tests
+
+on:
+  pull_request:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+    tags-ignore:
+      - "*"
+
+concurrency:
+  group: '${{ github.workflow }}-${{ github.ref }}'
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+          cache: "pip"
+
+      - run: pip install -e '.[testing]'
+
+      - run: pytest
+
+  build:
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - run: pipx run build
+      - run: pipx run twine check --strict dist/*
