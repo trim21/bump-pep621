@@ -35,6 +35,9 @@ def main(target: tuple[str, ...]) -> None:
     for t in target:
         assert t in orders
 
+    assert (
+        len(set(target) & {"major", "minor", "micro"}) <= 1
+    ), "can not combine major/minor/micro"
     assert len(set(target) & {"a", "b", "rc"}) <= 1, "can not combine a/b/rc"
 
     targets = sorted(target, key=lambda k: orders[k])
