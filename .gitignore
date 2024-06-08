@@ -7,6 +7,7 @@
 .idea
 *.iml
 out
+taskfile.yaml
 gen
 .idea/inspectionProfiles/
 .idea/misc.xml
