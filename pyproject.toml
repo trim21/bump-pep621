@@ -1,0 +1,88 @@
+[build-system]
+requires = ["hatchling>=1.20.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "bump-pep621"
+version = "1.0.1a0"
+description = "A simple comment to build package version defined in `project.version`"
+license = { text = "MIT" }
+requires-python = ">=3.8,<4.0"
+authors = [
+    { name = "trim21", email = "trim21me@gmail.com" },
+]
+readme = 'readme.md'
+keywords = [
+    "pacaging",
+    "bump",
+    "pep621",
+]
+
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3 :: Only",
+]
+
+dependencies = [
+    'packaging',
+    'click~=8.1.7',
+    'tomlkit~=0.11',
+]
+
+[project.optional-dependencies]
+testing = [
+    'pytest==8.2.1',
+    'pytest-cov==5.0.0',
+    "pytest-github-actions-annotate-failures==0.2.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/trim21/bump-pep621"
+
+[project.scripts]
+pyproject-bump = 'bump_bep621.main:main'
+
+[tool.hatch.build.targets.sdist]
+sources = ["src/"]
+include = ['src/']
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/bump_bep621"]
+
+[tool.black]
+target-version = ['py38']
+line-length = 88
+
+[tool.ruff]
+target-version = 'py38'
+line-length = 88
+
+src = ['src', 'tests']
+
+[tool.ruff.lint]
+extend-select = ['UP', 'I', 'E', "W", 'FA', 'ANN']
+ignore = ['ANN101', 'ANN401']
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ['ANN']
+"setup.py" = ['ANN']
+
+[tool.coverage.run]
+source = [
+    "src",
+]
+
+[tool.mypy]
+python_version = "3.8"
+strict = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+warn_return_any = false
+warn_unused_configs = true
+show_error_codes = true
+
+[tool.pytest.ini_options]
+pythonpath = ['src']
