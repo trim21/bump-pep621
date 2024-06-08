@@ -14,6 +14,6 @@ pyproject-bump minor rc # -> 0.2.0rc0
 pyproject-bump micro # -> 0.1.3
 pyproject-bump micro a # -> 0.1.3a0
 pyproject-bump a # -> 0.1.3a0
-pyproject-bump b # -> 1.0.0
-pyproject-bump rc # -> 1.0.0
+pyproject-bump b # -> 0.1.3b0
+pyproject-bump rc # -> 0.1.2rc0
 ```
