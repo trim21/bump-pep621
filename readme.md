@@ -8,7 +8,7 @@ given current version `0.1.2`
 
 ```shell
 pyproject-bump major # -> 1.0.0
-pyproject-bump major # -> 1.0.0a0
+pyproject-bump major a # -> 1.0.0a0
 pyproject-bump minor # -> 0.2.0
 pyproject-bump minor rc # -> 0.2.0rc0
 pyproject-bump micro # -> 0.1.3
