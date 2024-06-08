@@ -82,7 +82,9 @@ def test_next_micro(version_string, expected):
         ("1.1.1", "1.1.2a0"),
         ("1.2.1a1", "1.2.1a2"),
         ("1.2.3a1", "1.2.3a2"),
-        ("1.2.1b0", "1.2.2a0"),
+        ("0.0.1.dev", "0.0.1a0"),
+        ("0.0.1.dev0", "0.0.1a0"),
+        ("0.0.1.a1", "0.0.1a2"),
     ],
 )
 def test_next_alpha(version_string, expected):
