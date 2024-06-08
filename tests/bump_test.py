@@ -9,17 +9,20 @@ from bump_bep621.bump import (
 )
 
 
-@pytest.mark.parametrize("version_string,expected", [
-    ("0.0.1", "1.0.0"),
-    ("0.1.1", "1.0.0"),
-    ("1.1.1", "2.0.0"),
-    ("1.1.1a1", "2.0.0"),
-    ("1.1.0b10", "2.0.0"),
-    ("2.0.0a1", "2.0.0"),
-    ("2.0.0rc2", "2.0.0"),
-    ("2.0.0b4", "2.0.0"),
-    ("2.0.0b4.post1", "2.0.0"),
-])
+@pytest.mark.parametrize(
+    "version_string,expected",
+    [
+        ("0.0.1", "1.0.0"),
+        ("0.1.1", "1.0.0"),
+        ("1.1.1", "2.0.0"),
+        ("1.1.1a1", "2.0.0"),
+        ("1.1.0b10", "2.0.0"),
+        ("2.0.0a1", "2.0.0"),
+        ("2.0.0rc2", "2.0.0"),
+        ("2.0.0b4", "2.0.0"),
+        ("2.0.0b4.post1", "2.0.0"),
+    ],
+)
 def test_next_major(version_string, expected):
     version = Version(version_string)
     next_version = next_major(version)
@@ -28,16 +31,19 @@ def test_next_major(version_string, expected):
     assert str(next_version) == expected
 
 
-@pytest.mark.parametrize("version_string,expected", [
-    ("0.0.1", "0.1.0"),
-    ("0.1.1", "0.2.0"),
-    ("1.1.1", "1.2.0"),
-    ("1.1.1a1", "1.2.0"),
-    ("1.2.0a1", "1.2.0"),
-    ("1.2.0rc2", "1.2.0"),
-    ("1.2.0b4", "1.2.0"),
-    ("1.2.0b4.post1", "1.2.0"),
-])
+@pytest.mark.parametrize(
+    "version_string,expected",
+    [
+        ("0.0.1", "0.1.0"),
+        ("0.1.1", "0.2.0"),
+        ("1.1.1", "1.2.0"),
+        ("1.1.1a1", "1.2.0"),
+        ("1.2.0a1", "1.2.0"),
+        ("1.2.0rc2", "1.2.0"),
+        ("1.2.0b4", "1.2.0"),
+        ("1.2.0b4.post1", "1.2.0"),
+    ],
+)
 def test_next_minor(version_string, expected):
     version = Version(version_string)
     next_version = next_minor(version)
@@ -46,17 +52,20 @@ def test_next_minor(version_string, expected):
     assert str(next_version) == expected
 
 
-@pytest.mark.parametrize("version_string,expected", [
-    ("0.0.1", "0.0.2"),
-    ("0.1.1", "0.1.2"),
-    ("1.1.1", "1.1.2"),
-    ("1.2.1a1", "1.2.1"),
-    ("1.2.2a1", "1.2.2"),
-    ("1.2.0a1", "1.2.0"),
-    ("1.2.0rc2", "1.2.0"),
-    ("1.2.0b4", "1.2.0"),
-    ("1.2.0b4.post1", "1.2.0"),
-])
+@pytest.mark.parametrize(
+    "version_string,expected",
+    [
+        ("0.0.1", "0.0.2"),
+        ("0.1.1", "0.1.2"),
+        ("1.1.1", "1.1.2"),
+        ("1.2.1a1", "1.2.1"),
+        ("1.2.2a1", "1.2.2"),
+        ("1.2.0a1", "1.2.0"),
+        ("1.2.0rc2", "1.2.0"),
+        ("1.2.0b4", "1.2.0"),
+        ("1.2.0b4.post1", "1.2.0"),
+    ],
+)
 def test_next_micro(version_string, expected):
     version = Version(version_string)
     next_version = next_micro(version)
