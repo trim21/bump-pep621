@@ -24,23 +24,13 @@ orders = {
 
 
 @click.command(no_args_is_help=True)
-@click.argument("target", nargs=-1)
+@click.argument("target")
 def main(target: tuple[str, ...]) -> None:
     """
     TARGET: bumping target, could be major/minor/micro/a/b/rc
 
-    example: $ pbump major
+    example: $ pyproject-bump major
     """
-
-    for t in target:
-        assert t in orders
-
-    assert (
-        len(set(target) & {"major", "minor", "micro"}) <= 1
-    ), "can not combine major/minor/micro"
-    assert len(set(target) & {"a", "b", "rc"}) <= 1, "can not combine a/b/rc"
-
-    targets = sorted(target, key=lambda k: orders[k])
 
     f = TOMLFile("pyproject.toml")
     data = f.read()
@@ -48,21 +38,20 @@ def main(target: tuple[str, ...]) -> None:
 
     v = Version(old_version)
 
-    for t in targets:
-        if t == "major":
-            v = next_major(v)
-        elif t == "minor":
-            v = next_minor(v)
-        elif t == "micro":
-            v = next_micro(v)
-        elif t == "a":
-            v = next_alpha(v)
-        elif t == "b":
-            v = next_beta(v)
-        elif t == "rc":
-            v = next_rc(v)
-        else:
-            raise Exception(f"unknown target {t!r}")
+    if target == "major":
+        v = next_major(v)
+    elif target == "minor":
+        v = next_minor(v)
+    elif target == "micro":
+        v = next_micro(v)
+    elif target == "a":
+        v = next_alpha(v)
+    elif target == "b":
+        v = next_beta(v)
+    elif target == "rc":
+        v = next_rc(v)
+    else:
+        raise Exception(f"unknown target {target!r}")
 
     click.echo(f"write new version '{v!s}'")
 
