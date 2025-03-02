@@ -34,7 +34,7 @@ dependencies = [
 
 [project.optional-dependencies]
 testing = [
-    'pytest==8.3.3',
+    'pytest==8.3.5',
     'pytest-cov==6.0.0',
     "pytest-github-actions-annotate-failures==0.2.0",
 ]
